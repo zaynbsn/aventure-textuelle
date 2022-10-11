@@ -1,31 +1,22 @@
-const character = {
-  nom: "",
-  classe: "",
-  pv: 40,
-  attaque: 8,
-  parade: 10,
-  stats: {
-    courage : "",
-    perception : "",
-    charisme : "",
-    force : "",
-    adresse : ""
-  }
+// function sleep(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+function sleep(ms) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < ms);
 }
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function diceRoll(min, max) {
+  const result = Math.floor(Math.random() * (max - min + 1)) + min;
+  console.log("vous lancez un dé " + max + " !")
+  sleep(1000)
+  console.log("vous obtenez un résultat de " + result)
+  sleep(1000)
+  return result
 }
 
-function statInit(){
-  return getRandomInt(1,6) + 7
-}
-
-function statsInit(){
-  for (const stat in character.stats){
-    character.stats[stat] = statInit()
-  }
-  console.log(character)
-}
-
-export { statsInit }
+export { diceRoll, sleep }
