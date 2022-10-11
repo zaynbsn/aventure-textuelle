@@ -1,0 +1,23 @@
+{
+  "name": "aventure-textuelle",
+  "version": "1.0.0",
+  "description": "Projet de développement d'une aventure textuelle dans le cadre du cours de structure de données de l'Ecole By CCI Haute Savoie",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaynbsn/aventure-textuelle.git"
+  },
+  "keywords": [
+    "aventure",
+    "textuelle"
+  ],
+  "author": "zaynbsn&ptitjbus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaynbsn/aventure-textuelle/issues"
+  },
+  "homepage": "https://github.com/zaynbsn/aventure-textuelle#readme"
+}
