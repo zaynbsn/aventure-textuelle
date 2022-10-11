@@ -1,1 +1,3 @@
-console.log('hello world')
+import { characterInit } from './scripts/characterInit.js'
+
+characterInit()
