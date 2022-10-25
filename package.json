@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/zaynbsn/aventure-textuelle#readme",
   "dependencies": {
-    "chalk": "^5.1.0"
+    "chalk": "^5.1.0",
+    "colors": "^1.4.0"
   }
 }

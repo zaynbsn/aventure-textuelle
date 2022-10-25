@@ -1,8 +1,8 @@
-import chalk from 'chalk'
+import colors from 'colors'
 
-console.log(chalk.red('red'))
-console.log(chalk.yellow('yellow'))
-console.log(chalk.green('green'))
-console.log(chalk.bold('bold'))
-console.log(chalk.red.bold('red & bold'))
-console.log(chalk.bgMagenta('magenta bg'))
+console.log('red'.red)
+console.log('yellow'.yellow)
+console.log('green'.green)
+console.log('bold'.bold)
+console.log('red & bold'.bold.red)
+console.log('red bg'.bgRed)
