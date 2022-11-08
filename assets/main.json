@@ -1,5 +1,26 @@
 [
     {
+        "id" : 0,
+        "text":"ZZZZZZzzzz",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever ! Dehors il fait beau ! Vous vous habillez en vitesse sortez de chez vous pour faire ue ballade ...",
+                "condition":null,
+                "consequence":null,
+                "nodeId":1
+            },
+            {
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
+                "consequence": null,
+                "nodeId": 0
+            }
+        ]
+    },
+    {
         "id" : 1,
         "text":"Vous vous retrouvez face à un carrefour, que faites vous ?",
         "image":"",
