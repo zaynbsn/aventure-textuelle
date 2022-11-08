@@ -23,11 +23,11 @@ function characterInit() {
     return diceRoll(1,6) + 7
   }
   
-  function statsInit(){
+  async function statsInit(){
     for (const stat in character.stats){
       character.stats[stat] = statInit()
       console.log("en ajoutant 7, cela vous donne " + character.stats[stat] + " en " + stat)
-      sleep(500)
+      await sleep(1000)
     }
     console.log(character)
   }

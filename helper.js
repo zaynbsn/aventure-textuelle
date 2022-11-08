@@ -1,13 +1,5 @@
-// function sleep(ms) {
-//   return new Promise(resolve => setTimeout(resolve, ms));
-// }
-
 function sleep(ms) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < ms);
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function diceRoll(min, max) {
