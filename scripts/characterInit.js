@@ -1,7 +1,7 @@
 import { diceRoll, sleep } from "../helper.js"
 import inquirer from 'inquirer'
 
-function characterInit() {
+async function characterInit() {
   
   const character = {
     nom: "",
@@ -30,7 +30,7 @@ function characterInit() {
       console.log("en ajoutant 7, cela vous donne " + character.stats[stat] + " en " + stat)
       await sleep(1000)
     }
-    console.log(character)
+    
   }
   async function nameInit(){
     const inputHero = await inquirer.prompt({
@@ -42,8 +42,9 @@ function characterInit() {
   }
 
 
-  statsInit()
-  nameInit()
+  await statsInit()
+  await nameInit()
+  console.log(character)
 }
 
 export { characterInit }
