@@ -18,7 +18,7 @@ function characterInit() {
     }
   }
   
-  console.log('il est temps de définir vos caractéristiques de départ.')
+  console.log('Il est temps de définir vos caractéristiques de départ.')
   
   function statInit(){
     return diceRoll(1,6) + 7
@@ -38,11 +38,13 @@ function characterInit() {
       message: 'Please enter your name: ',
       name: "name",
     })
+
+    return inputHero
   }
 
 
   // statsInit()
-  nameInit()
+  return nameInit()
 }
 
 export { characterInit }
