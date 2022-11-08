@@ -1,21 +1,27 @@
-import { diceRoll, sleep } from "../helper.js"
+import { diceRoll, sleep, fight } from "../helper.js"
 import inquirer from 'inquirer'
 
-function characterInit() {
+async function characterInit() {
   
   const character = {
-    nom: "",
-    classe: "",
-    pv: 40,
-    attaque: 8,
+    name: "",
+    class: "",
+    hp: 40,
+    attack: 8,
     parade: 10,
     stats: {
       courage : "",
       perception : "",
-      charisme : "",
-      force : "",
-      adresse : ""
+      charism : "",
+      strength : "",
+      dexterity : ""
     }
+  }
+  const ennemy = {
+    name: "rat mutant",
+    hp: 20,
+    attack: 8,
+    parade: 10,
   }
   
   console.log('il est temps de définir vos caractéristiques de départ.')
@@ -28,9 +34,8 @@ function characterInit() {
     for (const stat in character.stats){
       character.stats[stat] = statInit()
       console.log("en ajoutant 7, cela vous donne " + character.stats[stat] + " en " + stat)
-      await sleep(1000)
+      // await sleep(1000)
     }
-    console.log(character)
   }
   async function nameInit(){
     const inputHero = await inquirer.prompt({
@@ -38,11 +43,14 @@ function characterInit() {
       message: 'Please enter your name: ',
       name: "name",
     })
+    character.name = inputHero.name
   }
 
-
-  // statsInit()
-  nameInit()
+  
+  await statsInit()
+  await nameInit()
+  console.log(character)
+  fight(character, ennemy)
 }
 
 export { characterInit }
