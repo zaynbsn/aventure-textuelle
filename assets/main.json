@@ -1,10 +1,80 @@
 [
     {
         "id" : 1,
-        "...": "..."
+        "text":"Vous vous retrouvez face à un carrefour, que faites vous ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"gauche",
+                "text":"Vous vous dirigez vers la gauche ...",
+                "condition":[
+                    {
+                        "name":"courage",
+                        "value":10
+                    }
+                ],
+                "consequence":[
+                    {
+                        "libelle":"perception",
+                        "isBonus":false,
+                        "value":1
+                    },
+                    {
+                        "libelle": "begin",
+                        "isBonus":false,
+                        "value":null
+                    }
+                ],
+                "nodeId":3
+            },
+            {
+                "name":"droite",
+                "text":"Vous vous dirigez vers la droite ...",
+                "consequence": null,
+                "nodeId": 2
+            }
+        ]
     },
     {
         "id" : 2,
-        "...": "..."
+        "text":"Vous voyez un petit renard !",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"*Qu'il est beau 🦊*",
+                "consequence":null,
+                "nodeId":47
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "text":"Deux mercenaires apparaissent et vous surprennent !\n -Ahahah tu croyais aller où comme ça toi ?",
+        "image":"",
+        "type": "fight",
+        "ennemys":"Gordon & Arno",
+        "event":[
+            {
+                "name":"",
+                "text":"Bravo ! Vous venez de tuer les deux hommes.",
+                "consequence":null,
+                "nodeId":47
+            },
+            {
+                "name":"",
+                "text":"Malgré une lutte acharnée, vos forces sont trop faibles et les deux hommes s'unissent pour vous affliger le coup de grâce, vous tombez à terre, le paysage autour de vous s'assombrit ... VOUS ETES MORT ☠",
+                "consequence":[
+                    {
+                        "libelle":"death",
+                        "isBonus":false,
+                        "value":null
+                    }
+                ],
+                "nodeId":null
+            }
+        ]
     }
 ]
