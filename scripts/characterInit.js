@@ -1,6 +1,5 @@
 import { diceRoll, sleep } from "../helper.js"
 import inquirer from 'inquirer'
-const readline = require("readline");
 
 function characterInit() {
   
@@ -39,10 +38,11 @@ function characterInit() {
       message: 'Please enter your name: ',
       name: "name",
     })
+    character.nom = inputHero.name
   }
 
 
-  // statsInit()
+  statsInit()
   nameInit()
 }
 
