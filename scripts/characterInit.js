@@ -1,4 +1,6 @@
 import { diceRoll, sleep } from "../helper.js"
+import inquirer from 'inquirer'
+const readline = require("readline");
 
 function characterInit() {
   
@@ -31,7 +33,17 @@ function characterInit() {
     }
     console.log(character)
   }
-  statsInit()
+  async function nameInit(){
+    const inputHero = await inquirer.prompt({
+      type: "input",
+      message: 'Please enter your name: ',
+      name: "name",
+    })
+  }
+
+
+  // statsInit()
+  nameInit()
 }
 
 export { characterInit }
