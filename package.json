@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/zaynbsn/aventure-textuelle#readme",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "inquirer": "^9.1.4"
   }
 }
