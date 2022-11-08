@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/zaynbsn/aventure-textuelle/issues"
   },
-  "homepage": "https://github.com/zaynbsn/aventure-textuelle#readme"
+  "homepage": "https://github.com/zaynbsn/aventure-textuelle#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
 }
