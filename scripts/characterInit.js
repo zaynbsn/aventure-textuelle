@@ -1,6 +1,5 @@
 import { diceRoll, sleep } from "../helper.js"
 import inquirer from 'inquirer'
-const readline = require("readline");
 
 function characterInit() {
   
