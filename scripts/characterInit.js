@@ -4,17 +4,17 @@ import inquirer from 'inquirer'
 async function characterInit() {
   
   const character = {
-    nom: "",
-    classe: "",
-    pv: 40,
-    attaque: 8,
+    name: "",
+    class: "",
+    hp: 40,
+    attack: 8,
     parade: 10,
     stats: {
       courage : "",
       perception : "",
-      charisme : "",
-      force : "",
-      adresse : ""
+      charism : "",
+      strength : "",
+      dexterity : ""
     }
   }
   
@@ -38,7 +38,7 @@ async function characterInit() {
       message: 'Please enter your name: ',
       name: "name",
     })
-    character.nom = inputHero.name
+    character.name = inputHero.name
   }
 
 
