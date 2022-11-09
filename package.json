@@ -23,6 +23,7 @@
   "homepage": "https://github.com/zaynbsn/aventure-textuelle#readme",
   "dependencies": {
     "colors": "^1.4.0",
+    "fs-js": "^1.0.6",
     "inquirer": "^9.1.4"
   }
 }
