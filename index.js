@@ -7,7 +7,7 @@ import inquirer from 'inquirer'
 
 (async () => {
     
-    if(characterFile.begin){
+    if(characterFile.path.length === 0){
         console.clear()
         console.log("Bienvenue à toi dans Moonheart adventure\n".bgGreen)
         await inquirer.prompt({
@@ -18,7 +18,6 @@ import inquirer from 'inquirer'
             console.clear()
             story(storyFile[0], characterFile)
         })
-        
     }else{
         console.clear()
         console.log("Bon retour dans Moonheart adventure !".bgGreen)
@@ -28,14 +27,8 @@ import inquirer from 'inquirer'
             name: "continue",
         }).then((answers) => {
             console.clear()
-            story(storyFile[character.path[character.path.length -1]], characterFile)
+            story(storyFile[characterFile.path[characterFile.path.length -1]], characterFile)
         })
     }
-    // TODO : Faire un message different si le joueur se connecte pour la premiere fois ou non
-    
-    
-    // const characterStats = await characterInit()
-    // console.clear()
-    // story(storyFile[0] , characterStats)
 
 })()

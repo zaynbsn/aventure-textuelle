@@ -1,8 +1,17 @@
 import { diceRoll, sleep } from "../helper.js";
 import storyFile from '../assets/main.json' assert { type: 'json' };
 import inquirer from 'inquirer'
+import { save } from "./save.js";
 
+/**
+ * 
+ * @param {Object} node 
+ * @param {Object} character 
+ */
 const storyFunction = async (node, character) => {
+    character.path.push(node.id)
+    // save(character)
+    save(character)
     
     if(node.type === "choice"){
         let allChoices = []
@@ -31,7 +40,7 @@ const storyFunction = async (node, character) => {
         console.log(node.text.bgBlue)
         console.log(node.event[0].text.bgGrey);
         console.log("");
-        const inputContinue = await inquirer.prompt({
+        await inquirer.prompt({
             type: "input",
             message: `Pressez la touche 'Entrer' pour continuer ->`,
             name: "continue",
@@ -43,7 +52,7 @@ const storyFunction = async (node, character) => {
     if(node.type === "fight"){
         await sleep(500)
         console.log(node.text.bgRed)
-        const inputContinue = await inquirer.prompt({
+        await inquirer.prompt({
             type: "input",
             message: `Pressez la touche 'Entrer' pour entrer en combat ->`,
             name: "continue",
