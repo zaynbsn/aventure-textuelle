@@ -1,4 +1,5 @@
-import { diceRoll, sleep, fight } from "../helper.js"
+import { diceRoll, sleep, waitKeyPress} from "../helper.js"
+import { fight } from "./fight.js"
 import inquirer from 'inquirer'
 
 async function characterInit() {
@@ -9,6 +10,7 @@ async function characterInit() {
     hp: 40,
     attack: 8,
     parade: 10,
+    fight: {attack: 2},
     stats: {
       courage : "",
       perception : "",
@@ -18,10 +20,11 @@ async function characterInit() {
     }
   }
   const ennemy = {
-    name: "rat mutant",
+    name: "un rat mutant",
     hp: 20,
     attack: 8,
     parade: 10,
+    fight: {attack: 2}
   }
   
   console.log('il est temps de définir vos caractéristiques de départ.')
@@ -45,11 +48,9 @@ async function characterInit() {
     })
     character.name = inputHero.name
   }
-
   
   await statsInit()
   await nameInit()
-  console.log(character)
   fight(character, ennemy)
 }
 
