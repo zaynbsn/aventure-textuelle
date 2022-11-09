@@ -1,8 +1,6 @@
-import colors from 'colors'
 import { diceRoll, sleep } from "../helper.js";
 import storyFile from '../assets/main.json' assert { type: 'json' };
 import inquirer from 'inquirer'
-
 
 const storyFunction = async (node, character) => {
     
@@ -35,12 +33,24 @@ const storyFunction = async (node, character) => {
         console.log("");
         const inputContinue = await inquirer.prompt({
             type: "input",
-            message: `Pressez la touche 'Entrer' pour continuer`,
+            message: `Pressez la touche 'Entrer' pour continuer ->`,
             name: "continue",
         }).then((answers) => {
             console.clear()
             storyFunction(storyFile[node.event[0].nodeId], character)
         })
+    }
+    if(node.type === "fight"){
+        await sleep(500)
+        console.log(node.text.bgRed)
+        const inputContinue = await inquirer.prompt({
+            type: "input",
+            message: `Pressez la touche 'Entrer' pour entrer en combat ->`,
+            name: "continue",
+        }).then((answers) => {
+            console.clear()
+            //constfightResult = await function(node.ennemyId, character)
+        })                
     }
 }
 

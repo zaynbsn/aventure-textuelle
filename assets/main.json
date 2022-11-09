@@ -73,10 +73,10 @@
     },
     {
         "id" : 3,
-        "text":"Deux mercenaires apparaissent et vous surprennent !\n -Ahahah tu croyais aller où comme ça toi ?",
+        "text":"Deux mercenaires apparaissent et vous surprennent !",
         "image":"",
         "type": "fight",
-        "ennemys":"Gordon & Arno",
+        "ennemysId":1,
         "event":[
             {
                 "name":"",
