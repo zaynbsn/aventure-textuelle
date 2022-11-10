@@ -11,4 +11,5 @@ function diceRoll(min, max) {
   return result
 }
 
+
 export { diceRoll, sleep }

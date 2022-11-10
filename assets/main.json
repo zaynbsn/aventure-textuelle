@@ -29,25 +29,14 @@
             {
                 "name":"gauche",
                 "text":"Vous vous dirigez vers la gauche ...",
-                "condition":[
-                    {
-                        "name":"courage",
-                        "value":10
-                    }
-                ],
                 "consequence":[
                     {
                         "libelle":"perception",
                         "isBonus":false,
                         "value":1
-                    },
-                    {
-                        "libelle": "begin",
-                        "isBonus":false,
-                        "value":null
                     }
                 ],
-                "nodeId":3
+                "nodeId":4
             },
             {
                 "name":"droite",
@@ -73,7 +62,7 @@
     },
     {
         "id" : 3,
-        "text":"Deux mercenaires apparaissent et vous surprennent !",
+        "text":"-Où est-ce que tu crois aller comme ça jeune aventurier ?",
         "image":"",
         "type": "fight",
         "ennemysId":1,
@@ -95,6 +84,36 @@
                     }
                 ],
                 "nodeId":null
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "text":"Epreuve de courage :",
+        "image":"",
+        "type": "test",
+        "test":{
+            "name":"courage",
+            "value":5
+        },
+        "event":[
+            {
+                "name":"Réussi",
+                "text":"Deux mercenaires sortent d'un buisson et tentent de vous surprendre mais vous les aviez vu et leur piège échoue !",
+                "consequence":null,
+                "nodeId":3
+            },
+            {
+                "name":"Raté",
+                "text":"Deux mercenaires sortent d'un buisson et vous surprennent ! Vous tombez par terre de stupeur ! (-1 hp)",
+                "consequence":[
+                    {
+                        "libelle":"death",
+                        "isBonus":false,
+                        "value":null
+                    }
+                ],
+                "nodeId":3
             }
         ]
     }
