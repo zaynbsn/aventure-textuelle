@@ -65,7 +65,7 @@
         "text":"-Où est-ce que tu crois aller comme ça jeune aventurier ?",
         "image":"",
         "type": "fight",
-        "ennemysId":1,
+        "enemyId":1,
         "event":[
             {
                 "name":"",
