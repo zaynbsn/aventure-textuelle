@@ -1,7 +1,7 @@
 import { diceRoll, sleep, waitKeyPress} from "../helper.js"
 import inquirer from 'inquirer'
 
-async function fight(character, enemy){
+const fight = async (character, enemy) => {
   let needTuto = false;
   let isFightOver = false;
   const actions = [
@@ -56,32 +56,32 @@ async function fight(character, enemy){
   
 }
 
-async function checkIfOver(character, enemy){
+const checkIfOver = async (character, enemy) => {
   if(character.hp <= 0 || enemy.hp <= 0){
     return true;
   }
   return false;
 }
 
-async function attackPrompt(character){
+const attackPrompt = async (character) => {
   console.log("vous avez choisi d'attaquer");
   await sleep(1000)
   console.log(`il vous reste désormais ${character.fight.attackStack} attaque(s)`);
   await sleep(1000)
 
 }
-async function paradePrompt(character){
+const paradePrompt = async (character) => {
   console.log('vous avez choisi de parer une potentielle attaque');
   await sleep(1000)
 }
-async function chargePrompt(character){
+const chargePrompt = async (character) => {
   console.log('vous avez choisi de charger une attaque');
   await sleep(1000)
   console.log(`vous possedez desormais ${character.fight.attackStack} attaque(s)`);
   await sleep(1000)
 }
 
-async function checkActions(character, enemy, action, enemyAction) {
+const checkActions = async (character, enemy, action, enemyAction) => {
   console.log('action :'.green, action.green)
   console.log('enemyAction :'.red, enemyAction.red)
   if(action === 'attack' && enemyAction === 'attack'){
@@ -156,11 +156,11 @@ async function checkActions(character, enemy, action, enemyAction) {
   }
 }
 
-function updateHp(target, amount){
+const updateHp = (target, amount) => {
   target.hp -= amount
 }
 
-async function tuto(needTuto) {
+const tuto = async (needTuto) => {
   await inquirer.prompt([
     {
       name: "need_tuto",

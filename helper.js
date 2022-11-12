@@ -1,10 +1,10 @@
 import inquirer from 'inquirer'
 
-function sleep(ms) {
+const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function diceRoll(min, max, prompt=true) {
+const diceRoll = async (min, max, prompt=true) => {
   console.clear()
   const result = Math.floor(Math.random() * (max - min + 1)) + min
   if(prompt === true){
@@ -15,8 +15,7 @@ async function diceRoll(min, max, prompt=true) {
   }
   return result
 }
-
-async function waitKeyPress(){
+const waitKeyPress = async () => {
   await inquirer.prompt({
     type: "input",
     message: `Appuyez sur la touche 'Entrer' pour continuer ->`,
@@ -27,4 +26,4 @@ async function waitKeyPress(){
 }
 
 
-export { diceRoll, sleep, waitKeyPress}
+export { diceRoll, sleep, waitKeyPress }
