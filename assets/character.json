@@ -1,32 +1,19 @@
 {
-	"name": "nils",
+	"name": "",
 	"class": "",
 	"hp": 40,
 	"attack": 8,
 	"parade": 10,
 	"dead": false,
-	"path": [
-		0,
-		1,
-		4,
-		3,
-		3,
-		3,
-		3,
-		3,
-		3,
-		3,
-		3,
-		3
-	],
+	"path": [],
 	"fight": {
 		"attackStack": 2
 	},
 	"stats": {
-		"courage": 10,
-		"perception": 11,
-		"charism": 10,
-		"strength": 9,
-		"dexterity": 10
+		"courage": "",
+		"perception": "",
+		"charism": "",
+		"strength": "",
+		"dexterity": ""
 	}
 }
