@@ -4,12 +4,15 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function diceRoll(min, max) {
-  const result = Math.floor(Math.random() * (max - min + 1)) + min;
-  // console.log("vous lancez un dé " + max + " !")
-  // await sleep(1000)
-  // console.log("vous obtenez un résultat de " + result)
-  // await sleep(1000)
+async function diceRoll(min, max, prompt=true) {
+  console.clear()
+  const result = Math.floor(Math.random() * (max - min + 1)) + min
+  if(prompt === true){
+    console.log(`vous lancez un dé ${max}!`)
+    await sleep(1000)
+    console.log(`vous obtenez ${result}`)
+    await sleep(1000)
+  }
   return result
 }
 
