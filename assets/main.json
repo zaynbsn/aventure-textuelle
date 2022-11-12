@@ -7,40 +7,35 @@
         "event":[
             {
                 "name":"Se lever",
-                "text":"Mouaaaahhh ! Il est temps de se lever ! Dehors il fait beau ! Vous vous habillez en vitesse sortez de chez vous pour faire ue ballade ...",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "condition":null,
                 "consequence":null,
-                "nodeId":1
+                "nodeId":6
             },
             {
                 "name":"Continuer à dormir",
                 "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
-                "nodeId": 0
+                "nodeId": 1
             }
         ]
     },
     {
         "id" : 1,
-        "text":"Vous vous retrouvez face à un carrefour, que faites vous ?",
+        "text":"ZZZZZZZZZzzzzzzz",
         "image":"",
         "type": "choice",
         "event":[
             {
-                "name":"gauche",
-                "text":"Vous vous dirigez vers la gauche ...",
-                "consequence":[
-                    {
-                        "libelle":"perception",
-                        "isBonus":false,
-                        "value":1
-                    }
-                ],
-                "nodeId":4
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
             },
             {
-                "name":"droite",
-                "text":"Vous vous dirigez vers la droite ...",
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
                 "nodeId": 2
             }
@@ -48,6 +43,296 @@
     },
     {
         "id" : 2,
+        "text":"ZZZZZZZZZzzzzzzz (il serait temps de se lever quand même)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
+            },
+            {
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
+                "consequence":null,
+                "nodeId":3
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "text":"ZZZZZZZZZzzzzzzz (non vraiment, levez vous.)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
+            },
+            {
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
+                "consequence": null,
+                "nodeId": 4
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "text":"ZZZZZZZZZzzzzzzz (dernier avertissement, tu vas le regretter. Ma patience à des limites.)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
+            },
+            {
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
+                "consequence": null,
+                "nodeId": 5
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "text":"ZZZZZZZZZzzzzzzz (vous l'aurez voulu, difficulté cauchemard activée.)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":[
+                    {
+                        "libelle":"hp",
+                        "isBonus":false,
+                        "value":20
+                    }
+                ],
+                "nodeId":6
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "text":"Vous vous dirigez vers l'imposante armoire en bois pour vous habiller. Plusieurs choix de tenues s'offrent à vous :",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Des vêtements de couleur sombre, dans les tons vert-brun-gris, et un sac à dos usé de baroudeur",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Ranger, et obtenez un bonus en perception mais un malus en dextérité.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Ranger"
+                    },
+                    {
+                        "libelle":"perception",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"dexterity",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Un ensemble manufacturé avec délicatesse, plutôt élégant et dans des nuances de vert",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Elfe, et obtenez un bonus en charisme mais un malus en force.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus": false,
+                        "value":"Elfe"
+                    },
+                    {
+                        "libelle":"charism",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"strength",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Un pagne",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Barbare, et obtenez un bonus en force mais un malus en perception.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Barbare"
+                    },
+                    {
+                        "libelle":"strength",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"perception",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Un ensemble sombre avec une capuche qui semble permettre une dissimulation parfaite de son visage",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Voleur, et obtenez un bonus en dextérité mais un malus en courage.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Voleur"
+                    },
+                    {
+                        "libelle":"dexterity",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"courage",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Une cotte de maille, de grosses bottes et un casque en metal",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Nain, et obtenez un bonus en courage mais un malus en charisme.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Nain"
+                    },
+                    {
+                        "libelle":"courage",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"charism",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            }
+        ]
+    },
+    {
+        "id" : 7,
+        "text":"Vous vous retrouvez face à un carrefour, que faites vous ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"gauche (vers l'église)",
+                "text":"Vous vous dirigez vers l'église...",
+                "consequence": null,
+                "nodeId": 8
+            },
+            {
+                "name":"droite (vers le port)",
+                "text":"Vous vous dirigez vers le port...",
+                "consequence": null,
+                "nodeId": 9
+            }
+        ]
+    }, 
+    {
+        "id" : 8,
+        "text":"Sur le chemin vous rencontrez un prêtre qui vous interpèle discrètement",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"Il vous explique de sa voix tremblotante :",
+                "consequence": null,
+                "nodeId": 10
+            }
+        ]
+    },
+    {
+        "id" : 8,
+        "text":"Sur le chemin vous rencontrez un matelôt qui vous intercèpte brusquement",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"Il vous explique la situation rapidement :",
+                "consequence": null,
+                "nodeId": 10
+            }
+        ]
+    },
+    {
+        "id" : 8,
+        "text":"Bonjour jeune aventurier. Vous semblez plein de fougue, c'est pourquoi je voudrais vous charger de la quête suivante : un groupe de mercenaire occupe le village et terrifie les habitants, vous devez nous aider à s'en débarasser !",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"*hmm interessant... que faire ?*",
+                "consequence": null,
+                "nodeId": 11
+            }
+        ]
+    },
+    {
+        "id" : 11,
+        "text":"",
+        "image":"",
+        "type": "",
+        "event":[
+            {
+                "name":"accepter la quête",
+                "text":"",
+                "consequence":null,
+                "nodeId": 14
+            },
+            {
+                "name":"demander des détails sur la quête",
+                "text":"",
+                "consequence": null,
+                "nodeId": 13
+            },
+            {
+                "name":"refuser la quête",
+                "text":"",
+                "consequence": null,
+                "nodeId": 12
+            }
+        ]
+    },
+    {
+        "id" : 101,
         "text":"Vous voyez un petit renard !",
         "image":"",
         "type": "text",
@@ -61,7 +346,7 @@
         ]
     },
     {
-        "id" : 3,
+        "id" : 102,
         "text":"-Où est-ce que tu crois aller comme ça jeune aventurier ?",
         "image":"",
         "type": "fight",
@@ -88,20 +373,19 @@
         ]
     },
     {
-        "id" : 4,
+        "id" : 103,
         "text":"Epreuve de courage :",
         "image":"",
         "type": "test",
         "test":{
-            "name":"courage",
-            "value":5
+            "name":"courage"
         },
         "event":[
             {
                 "name":"Réussi",
                 "text":"Deux mercenaires sortent d'un buisson et tentent de vous surprendre mais vous les aviez vu et leur piège échoue !",
                 "consequence":null,
-                "nodeId":3
+                "nodeId":8
             },
             {
                 "name":"Raté",
@@ -113,7 +397,7 @@
                         "value":null
                     }
                 ],
-                "nodeId":3
+                "nodeId":8
             }
         ]
     }
