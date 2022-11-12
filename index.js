@@ -12,9 +12,11 @@ import inquirer from 'inquirer'
         console.log("Bienvenue à toi dans Moonheart adventure\n".bgGreen)
         await inquirer.prompt({
             type: "input",
-            message: `Pressez la touche 'Entrer' pour continuer ->`,
+            message: `Appuyez sur la touche 'Entrer' pour continuer ->`,
             name: "continue",
-        }).then((answers) => {
+        }).then(async (answers) => {
+            console.clear()
+            await characterInit()
             console.clear()
             story(storyFile[0], characterFile)
         })
@@ -23,7 +25,7 @@ import inquirer from 'inquirer'
         console.log("Bon retour dans Moonheart adventure !".bgGreen)
         await inquirer.prompt({
             type: "input",
-            message: `Pressez la touche 'Entrer' pour continuer ->`,
+            message: `Appuyez la touche 'Entrer' pour continuer ->`,
             name: "continue",
         }).then((answers) => {
             console.clear()
