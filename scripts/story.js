@@ -26,13 +26,9 @@ const storyFunction = async (node, character) => {
             name: "choice",
             message: `"${node.text}"`.blue,
             choices: allChoices
-        }).then((answers) => {
+        }).then(async (answers) => {
             console.clear()
-            if(node.event[0].consequence){
-                for(let consequence of node.event[0].consequence){
-                    testConsequence(consequence, character)
-                }
-            }            
+            await checkIfConsequence(node, character)       
             for(let choice of node.event){
                 if(choice.name == answers.choice){
                     console.log(choice.text.bgBlue + "\n")
@@ -145,6 +141,9 @@ const testConsequence = async (consequence, character) => {
             break;
         case "hp":
             character.hp = consequence.isBonus ? character.hp+consequence.value : character.hp-consequence.value
+            break;
+        case "class":
+            character.class = consequence.value
             break;
         case "attack":
             character.attack = consequence.isBonus ? character.attack+consequence.value : character.attack-consequence.value
