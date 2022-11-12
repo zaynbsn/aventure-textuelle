@@ -27,7 +27,12 @@ const storyFunction = async (node, character) => {
             message: `"${node.text}"`.blue,
             choices: allChoices
         }).then((answers) => {
-            console.clear()             
+            console.clear()
+            if(node.event[0].consequence){
+                for(let consequence of node.event[0].consequence){
+                    testConsequence(consequence, character)
+                }
+            }            
             for(let choice of node.event){
                 if(choice.name == answers.choice){
                     console.log(choice.text.bgBlue + "\n")
@@ -36,6 +41,7 @@ const storyFunction = async (node, character) => {
             }
         })
     }
+
     if(node.type === "text"){
         await sleep(500)
         console.log(node.text.bgBlue)
@@ -44,11 +50,13 @@ const storyFunction = async (node, character) => {
             type: "input",
             message: `Appuyez sur la touche 'Entrer' pour continuer ->`,
             name: "continue",
-        }).then((answers) => {
+        }).then(async (answers) => {
             console.clear()
+            await checkIfConsequence(node, character)
             storyFunction(storyFile[node.event[0].nodeId], character)
         })
     }
+
     if(node.type === "fight"){
         await sleep(500)
         console.log(node.text.bgRed)
@@ -59,9 +67,11 @@ const storyFunction = async (node, character) => {
         }).then(async (answers) => {
             console.clear()
             const enemy = enemies.filter( enemy => enemy.id === node.enemyId )
-            constfightResult = await fight(character, enemy[0])
+            const isFightWon = await fight(character, enemy[0])
+            isFightWon ? await checkIfConsequence(node, character) : await checkIfConsequence(node, character, 1)
         })                
     }
+
     if(node.type === "test"){
         await sleep(500)
         console.log(node.text.bgBlue)
@@ -77,12 +87,10 @@ const storyFunction = async (node, character) => {
                 console.log(`vous faites un score de ${testResult} !`)
                 console.log(`Succès ! `.green)
                 await sleep(1000)
-                console.log(node.event[0].text.bgBlue + "\n")                
-                if(node.event[0].consequence){
-                    for(let consequence of node.event[0].consequence){
-                        testConsequence(consequence, character)
-                    }
-                }
+                console.log(node.event[0].text.bgBlue + "\n")       
+
+                await checkIfConsequence(node, character)
+
                 if(!character.dead)
                     storyFunction(storyFile[node.event[0].nodeId], character)
             }else{
@@ -90,11 +98,9 @@ const storyFunction = async (node, character) => {
                 console.log(`Echec :(`.red)
                 await sleep(1000)
                 console.log(node.event[1].text.bgBlue + "\n")
-                if(node.event[1].consequence){
-                    for(let consequence of node.event[1].consequence){
-                        testConsequence(consequence, character)
-                    }
-                }
+
+                await checkIfConsequence(node, character, 1)
+
                 if(!character.dead)
                     storyFunction(storyFile[node.event[1].nodeId], character)
             }
@@ -107,7 +113,20 @@ const storyFunction = async (node, character) => {
  * @param {Object} consequence 
  * @param {Object} character 
  */
-async function testConsequence(consequence, character){
+const checkIfConsequence = async (node, character, index=0) => {
+    if(node.event[index].consequence){
+        for(let consequence of node.event[index].consequence){
+            testConsequence(consequence, character)
+        }
+    }
+}
+
+/**
+ * 
+ * @param {Object} consequence 
+ * @param {Object} character 
+ */
+const testConsequence = async (consequence, character) => {
     switch(consequence.libelle){
         case "courage":
             character.stats.courage = consequence.isBonus ? character.stats.courage+consequence.value : character.stats.courage-consequence.value

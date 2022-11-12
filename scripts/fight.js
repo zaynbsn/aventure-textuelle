@@ -4,6 +4,7 @@ import inquirer from 'inquirer'
 const fight = async (character, enemy) => {
   let needTuto = false;
   let isFightOver = false;
+
   const actions = [
     {name : 'attaquer', value: 'attack'},
     {name : 'parer', value: 'parade'},
@@ -30,7 +31,6 @@ const fight = async (character, enemy) => {
     }).then(async (answer) => {
       action = answer.choice
       enemyAction = enemy.fight.attackStack === 0 ? actions[2].value : actions[await diceRoll(0,2, false)].value
-      console.log(enemy.fight.attackStack)
       switch (action) {
         case 'attack':
           character.fight.attackStack -= 1
@@ -50,10 +50,11 @@ const fight = async (character, enemy) => {
     await waitKeyPress();
   }
   console.log('combat terminé'.red)
-  console.log(character)
-  // write file character.json
-  return character
-  
+  if (character.hp <= 0) {
+    character.hp = 0
+    return false
+  }
+  return true
 }
 
 const checkIfOver = async (character, enemy) => {
@@ -82,8 +83,8 @@ const chargePrompt = async (character) => {
 }
 
 const checkActions = async (character, enemy, action, enemyAction) => {
-  console.log('action :'.green, action.green)
-  console.log('enemyAction :'.red, enemyAction.red)
+  // console.log('action :'.green, action.green)
+  // console.log('enemyAction :'.red, enemyAction.red)
   if(action === 'attack' && enemyAction === 'attack'){
 
     updateHp(enemy, character.attack)
@@ -97,8 +98,8 @@ const checkActions = async (character, enemy, action, enemyAction) => {
     await sleep(1000);
   }
   if(action === 'attack' && enemyAction === 'parade'){
-    let res = diceRoll(1,20);
-    if(res > enemy.parade){
+    let testResult = await diceRoll(1,20, false);
+    if(testResult > enemy.parade){
 
       updateHp(enemy, character.attack)
 
@@ -112,8 +113,8 @@ const checkActions = async (character, enemy, action, enemyAction) => {
     }
   }
   if(action === 'parade' && enemyAction === 'attack'){
-    let res = diceRoll(1,20);
-    if(res > enemy.parade){
+    let testResult = await diceRoll(1,20);
+    if(testResult > character.parade){
 
       updateHp(character, enemy.attack)
 
