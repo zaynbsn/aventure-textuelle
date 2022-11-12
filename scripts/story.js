@@ -1,8 +1,10 @@
 import { diceRoll, sleep } from "../helper.js";
 import storyFile from '../assets/main.json' assert { type: 'json' };
+import enemies from '../assets/enemies.json' assert { type: 'json' };
 import inquirer from 'inquirer'
 import { save } from "./save.js";
 import { resetFunction } from "../reset.js";
+import { fight } from "./fight.js";
 
 /**
  * 
@@ -40,7 +42,7 @@ const storyFunction = async (node, character) => {
         console.log(node.event[0].text.bgGrey + "\n");
         await inquirer.prompt({
             type: "input",
-            message: `Pressez la touche 'Entrer' pour continuer ->`,
+            message: `Appuyez sur la touche 'Entrer' pour continuer ->`,
             name: "continue",
         }).then((answers) => {
             console.clear()
@@ -52,24 +54,27 @@ const storyFunction = async (node, character) => {
         console.log(node.text.bgRed)
         await inquirer.prompt({
             type: "input",
-            message: `Pressez la touche 'Entrer' pour entrer en combat ->`,
+            message: `Appuyez sur la touche 'Entrer' pour entrer en combat ->`,
             name: "continue",
-        }).then((answers) => {
+        }).then(async (answers) => {
             console.clear()
-            //constfightResult = await function(node.ennemyId, character)
+            const enemy = enemies.filter( enemy => enemy.id === node.enemyId )
+            constfightResult = await fight(character, enemy[0])
         })                
     }
     if(node.type === "test"){
         await sleep(500)
         console.log(node.text.bgBlue)
-        console.log(`Votre compétence "${node.test.name}" à un maximum de ${character.stats.courage}, vous lancez donc un dé de ${character.stats.courage}, vous devez faire plus de ${node.test.value}`);
+        // console.log(`Votre compétence "${node.test.name}" à un maximum de ${character.stats.courage}, vous lancez donc un dé de ${character.stats.courage}, vous devez faire plus de ${node.test.value}`);
+        console.log(`Vous avez ${character.stats[node.test.name]} de ${node.test.name}, vous lancez donc un dé de 20, vous devez faire ${character.stats.courage} ou moins`);
         await inquirer.prompt({
             type: "input",
-            message: `Pressez la touche 'Entrer' pour lancer le dé`,
+            message: `Appuyez sur la touche 'Entrer' pour lancer le dé`,
             name: "result",
         }).then(async (answers) => {
-            if(diceRoll(0,character.stats.courage) > node.test.value){
-                console.clear()
+            let testResult = await diceRoll(1,20)
+            if( testResult <= character.stats[node.test.name]){
+                console.log(`vous faites un score de ${testResult} !`)
                 console.log(`Succès ! `.green)
                 await sleep(1000)
                 console.log(node.event[0].text.bgBlue + "\n")                
@@ -81,7 +86,7 @@ const storyFunction = async (node, character) => {
                 if(!character.dead)
                     storyFunction(storyFile[node.event[0].nodeId], character)
             }else{
-                console.clear()
+                console.log(`vous faites un score de ${testResult}...`)
                 console.log(`Echec :(`.red)
                 await sleep(1000)
                 console.log(node.event[1].text.bgBlue + "\n")
