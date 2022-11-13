@@ -170,7 +170,7 @@ const testConsequence = async (consequence, character) => {
             character.parade = consequence.isBonus ? character.parade+consequence.value : character.parade-consequence.value
             break;
         case "stack":
-            character.fight.attack = consequence.isBonus ? character.fight.attack+consequence.value : character.fight.attack-consequence.value
+            character.fight.attackStack = consequence.isBonus ? character.fight.attackStack+consequence.value : character.fight.attackStack-consequence.value
             break;
         case "death":
             character.dead = true
