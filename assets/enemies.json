@@ -1,0 +1,22 @@
+[
+    {
+        "id":1,
+        "name": "Gordon & Arno",
+        "image":"",
+        "description":"Deux imposants mercenaires pas très malins",
+        "hp": 40,
+        "attack": 8,
+        "parade": 10,
+        "fight": {"attackStack": 2}
+    },
+    {
+        "id":2,
+        "name": "Gordon & Arno",
+        "image":"",
+        "description":"Deux imposants mercenaires pas très malins",
+        "hp": 40,
+        "attack": 8,
+        "parade": 10,
+        "fight": {"attackStack": 2}
+    }
+]

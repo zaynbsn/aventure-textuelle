@@ -1,9 +1,10 @@
 import { diceRoll, sleep, waitKeyPress} from "../helper.js"
 import inquirer from 'inquirer'
 
-async function fight(character, ennemy){
+const fight = async (character, enemy) => {
   let needTuto = false;
   let isFightOver = false;
+
   const actions = [
     {name : 'attaquer', value: 'attack'},
     {name : 'parer', value: 'parade'},
@@ -13,10 +14,152 @@ async function fight(character, ennemy){
     {name : 'parer', value: 'parade'},
     {name : 'charger une attaque', value: 'charge'}
   ];
-  // {name : 'se soigner', value: 'heal'}
   let action = '';
-  let ennemyAction = '';
+  let enemyAction = '';
+
+  await tuto(needTuto);
   
+  console.log('vous entrez en combat avec', enemy.name, '!')
+  await waitKeyPress();
+
+  while (!isFightOver){
+    const inputChoice = await inquirer.prompt({
+      type: "list",
+      name: "choice",
+      message: 'choisissez quelle action vous voulez effectuer :',
+      choices: character.fight.attackStack === 0 ? actionsWithoutAttack : actions
+    }).then(async (answer) => {
+      action = answer.choice
+      enemyAction = enemy.fight.attackStack === 0 ? actions[2].value : actions[await diceRoll(0,2, false)].value
+      switch (action) {
+        case 'attack':
+          character.fight.attackStack -= 1
+          await attackPrompt(character);
+          break;
+        case 'parade':
+          await paradePrompt(character);
+          break;
+        case 'charge':
+          character.fight.attackStack += 1 
+          await chargePrompt(character);
+          break;
+      }
+    })
+    await checkActions(character, enemy, action, enemyAction)
+    isFightOver = await checkIfOver(character, enemy)
+    await waitKeyPress();
+  }
+  console.log('combat terminé'.red)
+  if (character.hp <= 0) {
+    character.hp = 0
+    return false
+  }
+  return true
+}
+
+const checkIfOver = async (character, enemy) => {
+  if(character.hp <= 0 || enemy.hp <= 0){
+    return true;
+  }
+  return false;
+}
+
+const attackPrompt = async (character) => {
+  console.log("vous avez choisi d'attaquer");
+  await sleep(1000)
+  console.log(`il vous reste désormais ${character.fight.attackStack} attaque(s)`);
+  await sleep(1000)
+
+}
+const paradePrompt = async (character) => {
+  console.log('vous avez choisi de parer une potentielle attaque');
+  await sleep(1000)
+}
+const chargePrompt = async (character) => {
+  console.log('vous avez choisi de charger une attaque');
+  await sleep(1000)
+  console.log(`vous possedez desormais ${character.fight.attackStack} attaque(s)`);
+  await sleep(1000)
+}
+
+const checkActions = async (character, enemy, action, enemyAction) => {
+  if(action === 'attack' && enemyAction === 'attack'){
+
+    updateHp(enemy, character.attack)
+    updateHp(character, enemy.attack)
+
+    console.log(`vous vous attaquez mutuellement, et vous blessez l'un et l'autre.`);
+    await sleep(1000);
+    console.log(`il vous reste ${character.hp < 0 ? 0 : character.hp } points de vie`);
+    await sleep(1000);
+    console.log(`l'ennemi possède maintenant ${enemy.hp < 0 ? 0 : enemy.hp } points de vie`);
+    await sleep(1000);
+  }
+  if(action === 'attack' && enemyAction === 'parade'){
+    let testResult = await diceRoll(1,20, false);
+    if(testResult > enemy.parade){
+
+      updateHp(enemy, character.attack)
+
+      console.log(`l'ennemi rate sa parade, vous lui infligez ${character.attack} points de dégats !`);
+      await sleep(1000);
+      console.log(`il lui reste ${enemy.hp < 0 ? 0 : enemy.hp} points de vie`);
+      await sleep(1000);
+    } else{
+      console.log(`l'ennemi a paré votre attaque !`) ;
+      await sleep(1000);
+    }
+  }
+  if(action === 'parade' && enemyAction === 'attack'){
+    let testResult = await diceRoll(1,20);
+    if(testResult > character.parade){
+
+      updateHp(character, enemy.attack)
+
+      console.log(`vous ratez votre parade, l'ennemi vous inflige ${enemy.attack} points de dégats !`);
+      await sleep(1000);
+      console.log(`il vous reste ${character.hp < 0 ? 0 : character.hp} points de vie`);
+      await sleep(1000);
+    } else {
+      console.log(`vous avez paré son attaque !`) ;
+      await sleep(1000);
+    }
+  }
+  if(action === 'parade' && enemyAction === 'parade'){
+    console.log(`vous avez tous les deux essayé de parer, rien ne se passe.`);
+    await sleep(1000);
+  }
+  if(action === 'charge' && enemyAction === 'charge'){
+    console.log(`vous avez tous les deux chargé une attaque, rien ne se passe.`);
+    await sleep(1000);
+  }
+  if(action === 'charge' && enemyAction === 'attack'){
+    updateHp(character, enemy.attack)
+    console.log(`l'ennemi vous inflige ${enemy.attack} points de dégats !`);
+    await sleep(1000);
+    console.log(`il vous reste ${character.hp < 0 ? 0 : character.hp} points de vie`);
+    await sleep(1000);
+  }
+  if(action === 'attack' && enemyAction === 'charge'){
+    updateHp(enemy, character.attack)
+    console.log(`vous lui infligez ${character.attack} points de dégats !`);
+    await sleep(1000);
+    console.log(`il lui reste ${enemy.hp < 0 ? 0 : enemy.hp} points de vie`);
+    await sleep(1000);
+  }
+  if(action === 'parade' && enemyAction === 'charge'){
+    console.log(`l'ennemi a chargé une attaque, votre parade à été inefficace.`)
+  }
+  if(action === 'charge' && enemyAction === 'parade'){
+    console.log(`vous avez chargé une attaque, la parade de l'ennemi à été inefficace.`)
+  }
+}
+
+const updateHp = (target, amount) => {
+  target.hp -= amount
+}
+
+const tuto = async (needTuto) => {
   await inquirer.prompt([
     {
       name: "need_tuto",
@@ -55,147 +198,6 @@ async function fight(character, ennemy){
     sleep(1000)
     await waitKeyPress();
   }
-  
-  console.log('vous entrez en combat avec', ennemy.name, '!')
-  await waitKeyPress();
-
-  while (!isFightOver){
-    const inputChoice = await inquirer.prompt({
-      type: "list",
-      name: "choice",
-      message: 'choisissez quelle action vous voulez effectuer :',
-      choices: character.fight.attack === 0 ? actionsWithoutAttack : actions
-    }).then(async (answer) => {
-      action = answer.choice
-      ennemyAction = ennemy.fight.attack === 0 ? actions[2].value : actions[diceRoll(0,2)].value
-  
-      switch (action) {
-        case 'attack':
-          character.fight.attack -= 1
-          await attackPrompt(character);
-          break;
-        case 'parade':
-          await paradePrompt(character);
-          break;
-        case 'charge':
-          character.fight.attack += 1 
-          await chargePrompt(character);
-          break;
-      }
-    })
-    await checkActions(character, ennemy, action, ennemyAction)
-    isFightOver = await checkIfOver(character, ennemy)
-    await waitKeyPress();
-  }
-  console.log('combat terminé'.red)
-  console.log(character)
-  // write file character.json
-  return character
-  
-}
-
-async function checkIfOver(character, ennemy){
-  if(character.hp <= 0 || ennemy.hp <= 0){
-    return true;
-  }
-  return false;
-}
-
-async function attackPrompt(character){
-  console.log("vous avez choisi d'attaquer");
-  await sleep(1000)
-  console.log(`il vous reste désormais ${character.fight.attack} attaque(s)`);
-  await sleep(1000)
-
-}
-async function paradePrompt(character){
-  console.log('vous avez choisi de parer une potentielle attaque');
-  await sleep(1000)
-}
-async function chargePrompt(character){
-  console.log('vous avez choisi de charger une attaque');
-  await sleep(1000)
-  console.log(`vous possedez desormais ${character.fight.attack} attaque(s)`);
-  await sleep(1000)
-}
-
-async function checkActions(character, ennemy, action, ennemyAction) {
-  console.log('action :'.green, action.green)
-  console.log('ennemyAction :'.red, ennemyAction.red)
-  if(action === 'attack' && ennemyAction === 'attack'){
-
-    updateHp(ennemy, character.attack)
-    updateHp(character, ennemy.attack)
-
-    console.log(`vous vous attaquez mutuellement, et vous blessez l'un et l'autre.`);
-    await sleep(1000);
-    console.log(`il vous reste ${character.hp < 0 ? 0 : character.hp } points de vie`);
-    await sleep(1000);
-    console.log(`l'ennemi possède maintenant ${ennemy.hp < 0 ? 0 : ennemy.hp } points de vie`);
-    await sleep(1000);
-  }
-  if(action === 'attack' && ennemyAction === 'parade'){
-    let res = diceRoll(1,20);
-    if(res > ennemy.parade){
-
-      updateHp(ennemy, character.attack)
-
-      console.log(`l'ennemi rate sa parade, vous lui infligez ${character.attack} points de dégats !`);
-      await sleep(1000);
-      console.log(`il lui reste ${ennemy.hp < 0 ? 0 : ennemy.hp} points de vie`);
-      await sleep(1000);
-    } else{
-      console.log(`l'ennemi a paré votre attaque !`) ;
-      await sleep(1000);
-    }
-  }
-  if(action === 'parade' && ennemyAction === 'attack'){
-    let res = diceRoll(1,20);
-    if(res > ennemy.parade){
-
-      updateHp(character, ennemy.attack)
-
-      console.log(`vous ratez votre parade, l'ennemi vous inflige ${ennemy.attack} points de dégats !`);
-      await sleep(1000);
-      console.log(`il vous reste ${character.hp < 0 ? 0 : character.hp} points de vie`);
-      await sleep(1000);
-    } else {
-      console.log(`vous avez paré son attaque !`) ;
-      await sleep(1000);
-    }
-  }
-  if(action === 'parade' && ennemyAction === 'parade'){
-    console.log(`vous avez tous les deux essayé de parer, rien ne se passe.`);
-    await sleep(1000);
-  }
-  if(action === 'charge' && ennemyAction === 'charge'){
-    console.log(`vous avez tous les deux chargé une attaque, rien ne se passe.`);
-    await sleep(1000);
-  }
-  if(action === 'charge' && ennemyAction === 'attack'){
-    updateHp(character, ennemy.attack)
-    console.log(`l'ennemi vous inflige ${ennemy.attack} points de dégats !`);
-    await sleep(1000);
-    console.log(`il vous reste ${character.hp < 0 ? 0 : character.hp} points de vie`);
-    await sleep(1000);
-  }
-  if(action === 'attack' && ennemyAction === 'charge'){
-    updateHp(ennemy, character.attack)
-    console.log(`vous lui infligez ${character.attack} points de dégats !`);
-    await sleep(1000);
-    console.log(`il lui reste ${ennemy.hp < 0 ? 0 : ennemy.hp} points de vie`);
-    await sleep(1000);
-  }
-  if(action === 'parade' && ennemyAction === 'charge'){
-    console.log(`l'ennemi a chargé une attaque, votre parade à été inefficace.`)
-  }
-  if(action === 'charge' && ennemyAction === 'parade'){
-    console.log(`vous avez chargé une attaque, la parade de l'ennemi à été inefficace.`)
-  }
-}
-
-function updateHp(target, amount){
-  target.hp -= amount
 }
 
 export { fight };

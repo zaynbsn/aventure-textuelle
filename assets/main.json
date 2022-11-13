@@ -7,51 +7,35 @@
         "event":[
             {
                 "name":"Se lever",
-                "text":"Mouaaaahhh ! Il est temps de se lever ! Dehors il fait beau ! Vous vous habillez en vitesse sortez de chez vous pour faire ue ballade ...",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "condition":null,
                 "consequence":null,
-                "nodeId":1
+                "nodeId":6
             },
             {
                 "name":"Continuer à dormir",
                 "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
-                "nodeId": 0
+                "nodeId": 1
             }
         ]
     },
     {
         "id" : 1,
-        "text":"Vous vous retrouvez face à un carrefour, que faites vous ?",
+        "text":"ZZZZZZZZZzzzzzzz",
         "image":"",
         "type": "choice",
         "event":[
             {
-                "name":"gauche",
-                "text":"Vous vous dirigez vers la gauche ...",
-                "condition":[
-                    {
-                        "name":"courage",
-                        "value":10
-                    }
-                ],
-                "consequence":[
-                    {
-                        "libelle":"perception",
-                        "isBonus":false,
-                        "value":1
-                    },
-                    {
-                        "libelle": "begin",
-                        "isBonus":false,
-                        "value":null
-                    }
-                ],
-                "nodeId":3
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
             },
             {
-                "name":"droite",
-                "text":"Vous vous dirigez vers la droite ...",
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
                 "nodeId": 2
             }
@@ -59,6 +43,502 @@
     },
     {
         "id" : 2,
+        "text":"ZZZZZZZZZzzzzzzz (il serait temps de se lever quand même)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
+            },
+            {
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
+                "consequence":null,
+                "nodeId":3
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "text":"ZZZZZZZZZzzzzzzz (non vraiment, levez vous.)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
+            },
+            {
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
+                "consequence": null,
+                "nodeId": 4
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "text":"ZZZZZZZZZzzzzzzz (dernier avertissement, tu vas le regretter. Ma patience à des limites.)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":null,
+                "nodeId":6
+            },
+            {
+                "name":"Continuer à dormir",
+                "text":"ZZZZZZZZZZZZZzzzzzzz",
+                "consequence": null,
+                "nodeId": 5
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "text":"ZZZZZZZZZzzzzzzz (vous l'aurez voulu, difficulté cauchemard activée.)",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Se lever",
+                "text":"Mouaaaahhh ! Il est temps de se lever !",
+                "condition":null,
+                "consequence":[
+                    {
+                        "libelle":"hp",
+                        "isBonus":false,
+                        "value":20
+                    }
+                ],
+                "nodeId":6
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "text":"Vous vous dirigez vers l'imposante armoire en bois pour vous habiller. Plusieurs choix de tenues s'offrent à vous :",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"Des vêtements de couleur sombre, dans les tons vert-brun-gris, et un sac à dos usé de baroudeur",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Ranger, et obtenez un bonus en perception mais un malus en dextérité.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Ranger"
+                    },
+                    {
+                        "libelle":"perception",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"dexterity",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Un ensemble manufacturé avec délicatesse, plutôt élégant et dans des nuances de vert",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Elfe, et obtenez un bonus en charisme mais un malus en force.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus": false,
+                        "value":"Elfe"
+                    },
+                    {
+                        "libelle":"charism",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"strength",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Un pagne",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Barbare, et obtenez un bonus en force mais un malus en perception.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Barbare"
+                    },
+                    {
+                        "libelle":"strength",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"perception",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Un ensemble sombre avec une capuche qui semble permettre une dissimulation parfaite de son visage",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Voleur, et obtenez un bonus en dextérité mais un malus en courage.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Voleur"
+                    },
+                    {
+                        "libelle":"dexterity",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"courage",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            },
+            {
+                "name":"Une cotte de maille, de grosses bottes et un casque en metal",
+                "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Nain, et obtenez un bonus en courage mais un malus en charisme.",
+                "consequence":[
+                    {
+                        "libelle":"class",
+                        "isBonus":false,
+                        "value":"Nain"
+                    },
+                    {
+                        "libelle":"courage",
+                        "isBonus": true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"charism",
+                        "isBonus":false,
+                        "value":2
+                    }
+                ],
+                "nodeId":7
+            }
+        ]
+    },
+    {
+        "id" : 7,
+        "text":"Vous vous retrouvez face à un carrefour, que faites vous ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"gauche (vers l'église)",
+                "text":"Vous vous dirigez vers l'église...",
+                "consequence": null,
+                "nodeId": 8
+            },
+            {
+                "name":"droite (vers le port)",
+                "text":"Vous vous dirigez vers le port...",
+                "consequence": null,
+                "nodeId": 9
+            }
+        ]
+    }, 
+    {
+        "id" : 8,
+        "text":"Sur le chemin vous rencontrez un prêtre qui vous interpèle discrètement",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"Il vous explique de sa voix tremblotante :",
+                "consequence": null,
+                "nodeId": 10
+            }
+        ]
+    },
+    {
+        "id" : 9,
+        "text":"Sur le chemin vous rencontrez un matelôt qui vous intercèpte brusquement",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"Il vous explique la situation rapidement :",
+                "consequence": null,
+                "nodeId": 10
+            }
+        ]
+    },
+    {
+        "id" : 10,
+        "text":"Bonjour jeune aventurier. Vous semblez plein de fougue, c'est pourquoi je voudrais vous charger de la quête suivante : un groupe de mercenaire occupe le village et terrifie les habitants, vous devez nous aider à s'en débarasser !",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"*hmm interessant... que faire ?*",
+                "consequence": null,
+                "nodeId": 11
+            }
+        ]
+    },
+    {
+        "id" : 11,
+        "text":"Voulez vous accepter la quête ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"accepter la quête",
+                "text":"*Une bonne occasion de gagner un peu d'argent*",
+                "consequence":null,
+                "nodeId": 14
+            },
+            {
+                "name":"demander des détails sur la quête",
+                "text":"*J'aimerais bien en savoir plus...*",
+                "consequence": null,
+                "nodeId": 13
+            },
+            {
+                "name":"refuser la quête",
+                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
+                "consequence": null,
+                "nodeId": 12
+            }
+        ]
+    },
+    {
+        "id" : 12,
+        "text":"Arbre fôret à faire",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":1
+            }
+        ]
+    },
+    {
+        "id" : 13,
+        "text":"Votre interlocuteur reprend : 'Les mercenaires sont des vagabonds et ont souvent été aperçus vers la forêt, pensez a y jeter un coup d'oeil.'",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"*La forêt...*",
+                "consequence":null,
+                "nodeId":15
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "text":"Vous decidez donc d'accepter la quête. que comptez vous faire ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"se renseigner à la taverne",
+                "text":"*une petite binouze ça n'a jamais fais de mal à personne*",
+                "consequence":null,
+                "nodeId": 16
+            },
+            {
+                "name":"sortir du village pour explorer les alentours",
+                "text":"*il y aura peut être des indices...*",
+                "consequence": null,
+                "nodeId": 17
+            }
+        ]
+    },
+    {
+        "id" : 15,
+        "text":"avec ces informations, souhaitez vous accepter la quête ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"accepter la quête",
+                "text":"*Une bonne occasion de gagner un peu d'argent*",
+                "consequence":null,
+                "nodeId":14
+            },
+            {
+                "name":"refuser la quête",
+                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
+                "consequence": null,
+                "nodeId": 12
+            }
+        ]
+    },
+    {
+        "id" : 16,
+        "text":"Arrivé à la taverne, vous observez une peu les lieux, une pièce ronde avec sur votre gauche le bar.  N'oubliez pas que vous êtes ici pour chercher des informations",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":18
+            }
+        ]
+    },
+    {
+        "id" : 17,
+        "text":"Arbre alentours de Moonheart Town à faire",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":1
+            }
+        ]
+    },
+    {
+        "id" : 18,
+        "text":"Vous aperçevez au fond, un homme reclus tout seul à une table dans un coin sombre. Vous allez le voir... ce qui signifie que vous allez devoir passer un test de charisme.",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":19
+            }
+        ]
+    },
+    {
+        "id" : 19,
+        "text":"Epreuve de charisme :",
+        "image":"",
+        "type": "test",
+        "test":{
+            "name":"charism"
+        },
+        "event":[
+            {
+                "name":"Réussi",
+                "text":"Vous réussissez à lui soutirer des informations précises sur la quête !",
+                "consequence":null,
+                "nodeId":21
+            },
+            {
+                "name":"Raté",
+                "text":"Il vous regarde d'un oeil méfiant; et vous donne des détails vagues...",
+                "consequence":null,
+                "nodeId":20
+            }
+        ]
+    },
+    {
+        "id" : 20,
+        "text":"'j'en ai effectivement vu passer tout à l'heure, il me semble qu'ils se dirigeaient vers la forêt  mais j'étais trop bourré pour m'en souvenir exactement'",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":22
+            }
+        ]
+    },
+    {
+        "id" : 21,
+        "text":"'je les ai croisés il y a de ça 10 min, ils sortaient de la taverne, après avoir bu plusieurs pintes chacun, ils étaient 2 et ils criaient sur tous les toits qu'ils se dirigeaient vers la forêt au nord pour rentrer dans leur bivouac'",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":22
+            }
+        ]
+    },
+    {
+        "id" : 22,
+        "text":"apres avoir récupéré ses informations, l'homme vous propose une petite bière, qu'en dites vous ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"accepter la bière",
+                "text":"*Une bonne occasion de gagner un peu d'argent*",
+                "consequence":[
+                    {
+                        "libelle":"dexterity",
+                        "isBonus":false,
+                        "value":1
+                    },
+                    {
+                        "libelle":"courage",
+                        "isBonus":true,
+                        "value":1
+                    }
+                ],
+                "nodeId":23
+            },
+            {
+                "name":"refuser la bière et sortir de la taverne",
+                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
+                "consequence": null,
+                "nodeId": 23
+            }
+        ]
+    },
+    {
+        "id" : 23,
+        "text":"Vous sortez de l'auberge et vous dirigez vers la forêt",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"Arbre Alentours de Moonheart town à faire",
+                "consequence":null,
+                "nodeId":1
+            }
+        ]
+    },
+    {
+        "id" : 101,
         "text":"Vous voyez un petit renard !",
         "image":"",
         "type": "text",
@@ -67,16 +547,16 @@
                 "name":"",
                 "text":"*Qu'il est beau 🦊*",
                 "consequence":null,
-                "nodeId":47
+                "nodeId":1
             }
         ]
     },
     {
-        "id" : 3,
-        "text":"Deux mercenaires apparaissent et vous surprennent !\n -Ahahah tu croyais aller où comme ça toi ?",
+        "id" : 102,
+        "text":"-Où est-ce que tu crois aller comme ça jeune aventurier ?",
         "image":"",
         "type": "fight",
-        "ennemys":"Gordon & Arno",
+        "enemyId":1,
         "event":[
             {
                 "name":"",
@@ -95,6 +575,35 @@
                     }
                 ],
                 "nodeId":null
+            }
+        ]
+    },
+    {
+        "id" : 103,
+        "text":"Epreuve de courage :",
+        "image":"",
+        "type": "test",
+        "test":{
+            "name":"courage"
+        },
+        "event":[
+            {
+                "name":"Réussi",
+                "text":"Deux mercenaires sortent d'un buisson et tentent de vous surprendre mais vous les aviez vu et leur piège échoue !",
+                "consequence":null,
+                "nodeId":8
+            },
+            {
+                "name":"Raté",
+                "text":"Deux mercenaires sortent d'un buisson et vous surprennent ! Vous tombez par terre de stupeur ! (-1 hp)",
+                "consequence":[
+                    {
+                        "libelle":"death",
+                        "isBonus":false,
+                        "value":null
+                    }
+                ],
+                "nodeId":8
             }
         ]
     }

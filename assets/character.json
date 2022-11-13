@@ -1,0 +1,19 @@
+{
+	"name": "",
+	"class": "",
+	"hp": 40,
+	"attack": 8,
+	"parade": 10,
+	"dead": false,
+	"path": [],
+	"fight": {
+		"attackStack": 2
+	},
+	"stats": {
+		"courage": "",
+		"perception": "",
+		"charism": "",
+		"strength": "",
+		"dexterity": ""
+	}
+}
