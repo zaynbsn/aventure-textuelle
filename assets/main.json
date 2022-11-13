@@ -105,7 +105,7 @@
         ]
     },
     {
-        "id" : 4,
+        "id" : 5,
         "text":"ZZZZZZZZZzzzzzzz (vous l'aurez voulu, difficulté cauchemard activée.)",
         "image":"",
         "type": "choice",
@@ -500,7 +500,7 @@
         "event":[
             {
                 "name":"accepter la bière",
-                "text":"*Une bonne occasion de gagner un peu d'argent*",
+                "text":"",
                 "consequence":[
                     {
                         "libelle":"dexterity",
@@ -517,7 +517,7 @@
             },
             {
                 "name":"refuser la bière et sortir de la taverne",
-                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
+                "text":"",
                 "consequence": null,
                 "nodeId": 23
             }
