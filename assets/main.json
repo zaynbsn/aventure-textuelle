@@ -8,7 +8,6 @@
             {
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
-                "condition":null,
                 "consequence":null,
                 "nodeId":6
             },
@@ -29,7 +28,6 @@
             {
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
-                "condition":null,
                 "consequence":null,
                 "nodeId":6
             },
@@ -50,7 +48,6 @@
             {
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
-                "condition":null,
                 "consequence":null,
                 "nodeId":6
             },
@@ -71,7 +68,6 @@
             {
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
-                "condition":null,
                 "consequence":null,
                 "nodeId":6
             },
@@ -92,7 +88,6 @@
             {
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
-                "condition":null,
                 "consequence":null,
                 "nodeId":6
             },
@@ -105,7 +100,7 @@
         ]
     },
     {
-        "id" : 4,
+        "id" : 5,
         "text":"ZZZZZZZZZzzzzzzz (vous l'aurez voulu, difficulté cauchemard activée.)",
         "image":"",
         "type": "choice",
@@ -113,7 +108,6 @@
             {
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
-                "condition":null,
                 "consequence":[
                     {
                         "libelle":"hp",
@@ -375,7 +369,7 @@
                 "name":"sortir du village pour explorer les alentours",
                 "text":"*il y aura peut être des indices...*",
                 "consequence": null,
-                "nodeId": 17
+                "nodeId": 23
             }
         ]
     },
@@ -500,7 +494,7 @@
         "event":[
             {
                 "name":"accepter la bière",
-                "text":"*Une bonne occasion de gagner un peu d'argent*",
+                "text":"",
                 "consequence":[
                     {
                         "libelle":"dexterity",
@@ -517,7 +511,7 @@
             },
             {
                 "name":"refuser la bière et sortir de la taverne",
-                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
+                "text":"",
                 "consequence": null,
                 "nodeId": 23
             }
@@ -531,38 +525,131 @@
         "event":[
             {
                 "name":"",
-                "text":"Arbre Alentours de Moonheart town à faire",
+                "text":"",
                 "consequence":null,
-                "nodeId":1
+                "nodeId":24
             }
         ]
     },
     {
-        "id" : 101,
-        "text":"Vous voyez un petit renard !",
+        "id" : 24,
+        "text":"Arrivé à la lisère de la forêt, vous cherchez des indices en observant les alentours",
         "image":"",
         "type": "text",
         "event":[
             {
                 "name":"",
-                "text":"*Qu'il est beau 🦊*",
+                "text":"",
                 "consequence":null,
-                "nodeId":1
+                "nodeId":25
             }
         ]
     },
     {
-        "id" : 102,
-        "text":"-Où est-ce que tu crois aller comme ça jeune aventurier ?",
+        "id" : 25,
+        "text":"Vous devez effectuer un test de perception pour réussir votre observation",
+        "image":"",
+        "type": "test",
+        "test":{
+            "name":"perception"
+        },
+        "event":[
+            {
+                "name":"Réussi",
+                "text":"vous observez de grandes traces de pas, ceux des mercenaires, les traces sont toutes fraîches",
+                "consequence":null,
+                "nodeId":26
+            },
+            {
+                "name":"Raté",
+                "text":"vous êtes un peu bigleux et vous êtes surpris par les mercenaires qui ont tendu une embusquade ! ",
+                "consequence":[
+                    {
+                        "libelle":"parade",
+                        "isBonus":false,
+                        "value":2
+                    },
+                    {
+                        "libelle":"stack",
+                        "isBonus":false,
+                        "value":1
+                    }
+                ],
+                "nodeId":27
+            }
+        ]
+    },
+    {
+        "id" : 26,
+        "text":"Il faut maintenant faire une épreuve de courage pour vérifier si vous êtes prêt à vous battre !",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":27
+            }
+        ]
+    },
+    {
+        "id" : 27,
+        "text":"Epreuve de courage :",
+        "image":"",
+        "type": "test",
+        "test":{
+            "name":"courage"
+        },
+        "event":[
+            {
+                "name":"Réussi",
+                "text":"vous distinguez les mercenaires derrière un arbre et les surprennez",
+                "consequence":[
+                    {
+                        "libelle":"attack",
+                        "isBonus":true,
+                        "value":2
+                    },
+                    {
+                        "libelle":"stack",
+                        "isBonus":true,
+                        "value":1
+                    }
+                ],
+                "nodeId":28
+            },
+            {
+                "name":"Raté",
+                "text":"vous perdez vos moyens devant les mercenaires et ils en profitent pour attaquer",
+                "consequence":[
+                    {
+                        "libelle":"parade",
+                        "isBonus":false,
+                        "value":2
+                    },
+                    {
+                        "libelle":"stack",
+                        "isBonus":false,
+                        "value":1
+                    }
+                ],
+                "nodeId":28
+            }
+        ]
+    },
+    {
+        "id" : 28,
+        "text":"Le combat va démarrer ! Préparez vous !",
         "image":"",
         "type": "fight",
         "enemyId":1,
         "event":[
             {
                 "name":"",
-                "text":"Bravo ! Vous venez de tuer les deux hommes.",
+                "text":"Bravo ! Vous venez de triompher des deux hommes, la quête est réussie !",
                 "consequence":null,
-                "nodeId":47
+                "nodeId":100
             },
             {
                 "name":"",
@@ -574,37 +661,29 @@
                         "value":null
                     }
                 ],
-                "nodeId":null
+                "nodeId":100
             }
         ]
     },
     {
-        "id" : 103,
-        "text":"Epreuve de courage :",
+        "id" : 100,
+        "text":"c'est la fin du chapitre Moonheart town, merci d'avoir joué, le prochain chapitre est bientôt disponible !",
         "image":"",
-        "type": "test",
-        "test":{
-            "name":"courage"
-        },
+        "type": "text",
         "event":[
             {
-                "name":"Réussi",
-                "text":"Deux mercenaires sortent d'un buisson et tentent de vous surprendre mais vous les aviez vu et leur piège échoue !",
+                "name":"",
+                "text":"",
                 "consequence":null,
-                "nodeId":8
-            },
-            {
-                "name":"Raté",
-                "text":"Deux mercenaires sortent d'un buisson et vous surprennent ! Vous tombez par terre de stupeur ! (-1 hp)",
-                "consequence":[
-                    {
-                        "libelle":"death",
-                        "isBonus":false,
-                        "value":null
-                    }
-                ],
-                "nodeId":8
+                "nodeId":404
             }
         ]
+    },
+    {
+        "id" : 404,
+        "text":"",
+        "image":"",
+        "type": "reset",
+        "event":null
     }
 ]

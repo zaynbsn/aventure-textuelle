@@ -106,6 +106,16 @@ const storyFunction = async (node, character) => {
             }
         })  
     }
+    if(node.type === "reset"){
+        let res = await inquirer.prompt({
+            type: "confirm",
+            message: `Recommencer ?`,
+            name: "restart",
+        })
+        if(res.restart){
+            resetFunction()
+        }
+    }
 }
 
 const getNextNode = (storyFile, nodeId) => {
@@ -159,7 +169,10 @@ const testConsequence = async (consequence, character) => {
         case "parade":
             character.parade = consequence.isBonus ? character.parade+consequence.value : character.parade-consequence.value
             break;
-        case 'death':
+        case "stack":
+            character.fight.attack = consequence.isBonus ? character.fight.attack+consequence.value : character.fight.attack-consequence.value
+            break;
+        case "death":
             character.dead = true
             console.log("L'aventure prend fin ... vous êtes mort ☠".bgRed);
             let response = await inquirer.prompt({
