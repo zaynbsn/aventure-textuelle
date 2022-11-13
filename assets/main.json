@@ -621,7 +621,7 @@
             },
             {
                 "name":"Raté",
-                "text":"vous perdez vos moyens devant les mercenaires et ils en profitent pour attaquer",
+                "text":"Vous perdez vos moyens devant les mercenaires et ils en profitent pour attaquer",
                 "consequence":[
                     {
                         "libelle":"parade",

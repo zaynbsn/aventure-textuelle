@@ -21,11 +21,6 @@ export const resumeFunction = async () => {
     for(let i = 0; i<character.path.length; i++){
         for(let node of storyFile){
             if(node.id === character.path[i]){
-                // if(character.path[i-1]){
-                //     console.log("node: "+node.id)
-                //     console.log("choix: "+character.path[i+1])
-                    // console.log(node.find(nodeId => node.id === nodeId))
-                // }
                 nodePath.push(node)
             }
         }
@@ -35,7 +30,6 @@ export const resumeFunction = async () => {
     for(let node of nodePath){
         let eventText = ""
         if(nodePath[nodePath.indexOf(node)+1]){
-            console.log(nodePath[nodePath.indexOf(node)+1].id)
             let nextNodeId = nodePath[nodePath.indexOf(node)+1].id
             for(let event of node.event){
                 if(event.nodeId === nextNodeId){

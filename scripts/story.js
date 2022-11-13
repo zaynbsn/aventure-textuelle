@@ -80,13 +80,13 @@ const storyFunction = async (node, character) => {
     if(node.type === "test"){
         await sleep(500)
         console.log(node.text.blue)
-        console.log(`Vous avez ${character.stats[node.test.name]} de ${node.test.name}, vous lancez donc un dé de 20, vous devez faire ${character.stats.courage} ou moins`);
+        console.log(`Vous avez ${character.stats[node.test.name]} de ${node.test.name}, vous lancez donc un dé de 20, vous devez faire ${character.stats[node.test.name]} ou moins`);
         await inquirer.prompt({
             type: "input",
             message: `Appuyez sur la touche 'Entrer' pour lancer le dé`,
             name: "result",
         }).then(async (answers) => {
-            let testResult = await diceRoll(1,20)
+            let testResult = await diceRoll(1,20, false)
             if( testResult <= character.stats[node.test.name]){
                 console.log(`vous faites un score de ${testResult} !`)
                 console.log(`Succès ! `.green)
