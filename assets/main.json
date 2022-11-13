@@ -321,7 +321,7 @@
                 "name":"refuser la quête",
                 "text":"*Aucune chance, je veux juste partir loin de ce village !*",
                 "consequence": null,
-                "nodeId": 12
+                "nodeId": 100
             }
         ]
     },
@@ -389,7 +389,7 @@
                 "name":"refuser la quête",
                 "text":"*Aucune chance, je veux juste partir loin de ce village !*",
                 "consequence": null,
-                "nodeId": 12
+                "nodeId": 100
             }
         ]
     },
