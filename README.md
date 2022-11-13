@@ -43,7 +43,19 @@ During the adventure you can see the stats about your character in './assets/cha
 
 you'll see, depending on your choices, the file is updating in real time
 
-### After
+### Story
+
+
+Dive into an adventure in the middle of The island 'The Whispering Holm'
+
+You start in Moonheart town, a small peacefull city, where you can help the inhabitants as an adventurer !
+
+Here the plan of The Whispering Holm
+
+![alt text](https://github.com/zaynbsn/aventure-textuelle/assets/the-whispering-holm.png?raw=true)
+
+![alt text](./assets/the_whispering_holm.png?raw=true)
+
 
 only 'Chapter 1 : Moonheart town' is available for now, soon 'Chapter 2 : The forest' will be released
 
