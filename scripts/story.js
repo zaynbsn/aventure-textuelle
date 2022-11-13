@@ -31,8 +31,8 @@ const storyFunction = async (node, character) => {
             await checkIfConsequence(node, character)       
             for(let choice of node.event){
                 if(choice.name == answers.choice){
-                    console.log(choice.text.bgBlue + "\n")
-                    storyFunction(storyFile[choice.nodeId], character)
+                    console.log(choice.text.blue + "\n")
+                    storyFunction(getNextNode(storyFile, choice.nodeId), character)
                 }
             }
         })
@@ -40,7 +40,7 @@ const storyFunction = async (node, character) => {
 
     if(node.type === "text"){
         await sleep(500)
-        console.log(node.text.bgBlue)
+        console.log(node.text.blue)
         console.log(node.event[0].text.bgGrey + "\n");
         await inquirer.prompt({
             type: "input",
@@ -49,7 +49,7 @@ const storyFunction = async (node, character) => {
         }).then(async (answers) => {
             console.clear()
             await checkIfConsequence(node, character)
-            storyFunction(storyFile[node.event[0].nodeId], character)
+            storyFunction(getNextNode(storyFile, node.event[0].nodeId), character)
         })
     }
 
@@ -64,13 +64,18 @@ const storyFunction = async (node, character) => {
             console.clear()
             const enemy = enemies.filter( enemy => enemy.id === node.enemyId )
             const isFightWon = await fight(character, enemy[0])
-            isFightWon ? await checkIfConsequence(node, character) : await checkIfConsequence(node, character, 1)
+            if (isFightWon){
+                await checkIfConsequence(node, character)
+                storyFunction(getNextNode(storyFile, node.event[1].nodeId), character)
+            }else{
+                await checkIfConsequence(node, character, 1)
+            }
         })                
     }
 
     if(node.type === "test"){
         await sleep(500)
-        console.log(node.text.bgBlue)
+        console.log(node.text.blue)
         // console.log(`Votre compétence "${node.test.name}" à un maximum de ${character.stats.courage}, vous lancez donc un dé de ${character.stats.courage}, vous devez faire plus de ${node.test.value}`);
         console.log(`Vous avez ${character.stats[node.test.name]} de ${node.test.name}, vous lancez donc un dé de 20, vous devez faire ${character.stats.courage} ou moins`);
         await inquirer.prompt({
@@ -83,25 +88,29 @@ const storyFunction = async (node, character) => {
                 console.log(`vous faites un score de ${testResult} !`)
                 console.log(`Succès ! `.green)
                 await sleep(1000)
-                console.log(node.event[0].text.bgBlue + "\n")       
+                console.log(node.event[0].text.blue + "\n")       
 
                 await checkIfConsequence(node, character)
 
                 if(!character.dead)
-                    storyFunction(storyFile[node.event[0].nodeId], character)
+                    storyFunction(getNextNode(storyFile, node.event[0].nodeId), character)
             }else{
                 console.log(`vous faites un score de ${testResult}...`)
                 console.log(`Echec :(`.red)
                 await sleep(1000)
-                console.log(node.event[1].text.bgBlue + "\n")
+                console.log(node.event[1].text.blue + "\n")
 
                 await checkIfConsequence(node, character, 1)
 
                 if(!character.dead)
-                    storyFunction(storyFile[node.event[1].nodeId], character)
+                    storyFunction(getNextNode(storyFile, node.event[1].nodeId), character)
             }
         })  
     }
+}
+
+const getNextNode = (storyFile, nodeId) => {
+    return storyFile.find(node => node.id === nodeId)
 }
 
 /**
