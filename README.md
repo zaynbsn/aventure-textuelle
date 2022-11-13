@@ -52,8 +52,6 @@ You start in Moonheart town, a small peacefull city, where you can help the inha
 
 Here the plan of The Whispering Holm
 
-![alt text](https://github.com/zaynbsn/aventure-textuelle/assets/the-whispering-holm.png?raw=true)
-
 ![alt text](./assets/the_whispering_holm.png?raw=true)
 
 
