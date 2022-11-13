@@ -36,7 +36,7 @@ Each step is automatically save, so if you quit the program, you can start again
 If you want to reset your adventure run this command :
 
 ```bash
-node reset
+npm run reset
 ```
 
 During the adventure you can see the stats about your character in './assets/character.json'
