@@ -83,8 +83,6 @@ const chargePrompt = async (character) => {
 }
 
 const checkActions = async (character, enemy, action, enemyAction) => {
-  // console.log('action :'.green, action.green)
-  // console.log('enemyAction :'.red, enemyAction.red)
   if(action === 'attack' && enemyAction === 'attack'){
 
     updateHp(enemy, character.attack)

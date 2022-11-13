@@ -76,7 +76,6 @@ const storyFunction = async (node, character) => {
     if(node.type === "test"){
         await sleep(500)
         console.log(node.text.blue)
-        // console.log(`Votre compétence "${node.test.name}" à un maximum de ${character.stats.courage}, vous lancez donc un dé de ${character.stats.courage}, vous devez faire plus de ${node.test.value}`);
         console.log(`Vous avez ${character.stats[node.test.name]} de ${node.test.name}, vous lancez donc un dé de 20, vous devez faire ${character.stats.courage} ou moins`);
         await inquirer.prompt({
             type: "input",
