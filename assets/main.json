@@ -6,12 +6,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "consequence":null,
                 "nodeId":6
             },
             {
+                "id" : 1,
                 "name":"Continuer à dormir",
                 "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
@@ -26,12 +28,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "consequence":null,
                 "nodeId":6
             },
             {
+                "id" : 1,
                 "name":"Continuer à dormir",
                 "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
@@ -46,12 +50,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "consequence":null,
                 "nodeId":6
             },
             {
+                "id" : 1,
                 "name":"Continuer à dormir",
                 "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence":null,
@@ -66,12 +72,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "consequence":null,
                 "nodeId":6
             },
             {
+                "id" : 1,
                 "name":"Continuer à dormir",
                 "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
@@ -86,12 +94,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "consequence":null,
                 "nodeId":6
             },
             {
+                "id" : 1,
                 "name":"Continuer à dormir",
                 "text":"ZZZZZZZZZZZZZzzzzzzz",
                 "consequence": null,
@@ -106,6 +116,7 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"Se lever",
                 "text":"Mouaaaahhh ! Il est temps de se lever !",
                 "consequence":[
@@ -126,6 +137,7 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"Des vêtements de couleur sombre, dans les tons vert-brun-gris, et un sac à dos usé de baroudeur",
                 "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Ranger, et obtenez un bonus en perception mais un malus en dextérité.",
                 "consequence":[
@@ -148,6 +160,7 @@
                 "nodeId":7
             },
             {
+                "id" : 1,
                 "name":"Un ensemble manufacturé avec délicatesse, plutôt élégant et dans des nuances de vert",
                 "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Elfe, et obtenez un bonus en charisme mais un malus en force.",
                 "consequence":[
@@ -170,6 +183,7 @@
                 "nodeId":7
             },
             {
+                "id" : 2,
                 "name":"Un pagne",
                 "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Barbare, et obtenez un bonus en force mais un malus en perception.",
                 "consequence":[
@@ -192,6 +206,7 @@
                 "nodeId":7
             },
             {
+                "id" : 3,
                 "name":"Un ensemble sombre avec une capuche qui semble permettre une dissimulation parfaite de son visage",
                 "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Voleur, et obtenez un bonus en dextérité mais un malus en courage.",
                 "consequence":[
@@ -214,6 +229,7 @@
                 "nodeId":7
             },
             {
+                "id" : 4,
                 "name":"Une cotte de maille, de grosses bottes et un casque en metal",
                 "text":"Vous avez donc choisi votre classe ! Vous serez un(e) Nain, et obtenez un bonus en courage mais un malus en charisme.",
                 "consequence":[
@@ -244,12 +260,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"gauche (vers l'église)",
                 "text":"Vous vous dirigez vers l'église...",
                 "consequence": null,
                 "nodeId": 8
             },
             {
+                "id" : 1,
                 "name":"droite (vers le port)",
                 "text":"Vous vous dirigez vers le port...",
                 "consequence": null,
@@ -264,6 +282,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"Il vous explique de sa voix tremblotante :",
                 "consequence": null,
@@ -278,6 +297,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"Il vous explique la situation rapidement :",
                 "consequence": null,
@@ -292,6 +312,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"*hmm interessant... que faire ?*",
                 "consequence": null,
@@ -306,18 +327,21 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"accepter la quête",
                 "text":"*Une bonne occasion de gagner un peu d'argent*",
                 "consequence":null,
                 "nodeId": 14
             },
             {
+                "id" : 1,
                 "name":"demander des détails sur la quête",
                 "text":"*J'aimerais bien en savoir plus...*",
                 "consequence": null,
                 "nodeId": 13
             },
             {
+                "id" : 2,
                 "name":"refuser la quête",
                 "text":"*Aucune chance, je veux juste partir loin de ce village !*",
                 "consequence": null,
@@ -332,6 +356,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -346,6 +371,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"*La forêt...*",
                 "consequence":null,
@@ -360,12 +386,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"se renseigner à la taverne",
                 "text":"*une petite binouze ça n'a jamais fais de mal à personne*",
                 "consequence":null,
                 "nodeId": 16
             },
             {
+                "id" : 1,
                 "name":"sortir du village pour explorer les alentours",
                 "text":"*il y aura peut être des indices...*",
                 "consequence": null,
@@ -380,12 +408,14 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"accepter la quête",
                 "text":"*Une bonne occasion de gagner un peu d'argent*",
                 "consequence":null,
                 "nodeId":14
             },
             {
+                "id" : 1,
                 "name":"refuser la quête",
                 "text":"*Aucune chance, je veux juste partir loin de ce village !*",
                 "consequence": null,
@@ -400,6 +430,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -414,6 +445,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -428,6 +460,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -445,12 +478,14 @@
         },
         "event":[
             {
+                "id" : 0,
                 "name":"Réussi",
                 "text":"Vous réussissez à lui soutirer des informations précises sur la quête !",
                 "consequence":null,
                 "nodeId":21
             },
             {
+                "id" : 1,
                 "name":"Raté",
                 "text":"Il vous regarde d'un oeil méfiant; et vous donne des détails vagues...",
                 "consequence":null,
@@ -465,6 +500,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -479,6 +515,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -493,6 +530,7 @@
         "type": "choice",
         "event":[
             {
+                "id" : 0,
                 "name":"accepter la bière",
                 "text":"Volontier ! *glouglou*",
                 "consequence":[
@@ -510,6 +548,7 @@
                 "nodeId":23
             },
             {
+                "id" : 1,
                 "name":"refuser la bière et sortir de la taverne",
                 "text":"Non merci, je doit rester concentré ...",
                 "consequence": null,
@@ -524,6 +563,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -538,6 +578,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -555,12 +596,14 @@
         },
         "event":[
             {
+                "id" : 0,
                 "name":"Réussi",
                 "text":"vous observez de grandes traces de pas, ceux des mercenaires, les traces sont toutes fraîches",
                 "consequence":null,
                 "nodeId":26
             },
             {
+                "id" : 1,
                 "name":"Raté",
                 "text":"vous êtes un peu bigleux et vous êtes surpris par les mercenaires qui ont tendu une embusquade ! ",
                 "consequence":[
@@ -586,6 +629,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,
@@ -603,6 +647,7 @@
         },
         "event":[
             {
+                "id" : 0,
                 "name":"Réussi",
                 "text":"vous distinguez les mercenaires derrière un arbre et les surprennez",
                 "consequence":[
@@ -620,6 +665,7 @@
                 "nodeId":28
             },
             {
+                "id" : 1,
                 "name":"Raté",
                 "text":"Vous perdez vos moyens devant les mercenaires et ils en profitent pour attaquer",
                 "consequence":[
@@ -646,12 +692,14 @@
         "enemyId":1,
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"Bravo ! Vous venez de triompher des deux hommes, la quête est réussie !",
                 "consequence":null,
                 "nodeId":100
             },
             {
+                "id" : 1,
                 "name":"",
                 "text":"Malgré une lutte acharnée, vos forces sont trop faibles et les deux hommes s'unissent pour vous affliger le coup de grâce, vous tombez à terre, le paysage autour de vous s'assombrit ... VOUS ETES MORT ☠",
                 "consequence":[
@@ -672,6 +720,7 @@
         "type": "text",
         "event":[
             {
+                "id" : 0,
                 "name":"",
                 "text":"",
                 "consequence":null,

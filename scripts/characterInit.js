@@ -1,6 +1,8 @@
 import { diceRoll, sleep, waitKeyPress} from "../helper.js"
 import character from '../assets/character.json' assert { type: 'json' };
 import inquirer from 'inquirer'
+import save from "./save.js";
+import fs from "fs"
 
 const characterInit = async () => {
   
@@ -9,6 +11,8 @@ const characterInit = async () => {
 
   await statsInit()
   await nameInit()
+  save(character)
+  fs.writeFileSync(`./resume_${character.name}.md`, '# Moonlight adventure (résumé de la partie) ⚔', "UTF-8",{'flags': 'w+'});
 }
 
 const statInit = async () => {

@@ -6,18 +6,20 @@ import { save } from "./save.js";
 import { resetFunction } from "../reset.js";
 import { fight } from "./fight.js";
 import { resumeFunction } from "./resume.js";
-
+import util from "util" 
 /**
  * 
  * @param {Object} node 
  * @param {Object} character 
  */
-const storyFunction = async (node, character) => {
+const storyFunction = async (node, character, previousEvent = null) => {
+    if(previousEvent){
+        await resumeFunction(previousEvent)
+    }
     if(node.id !== character.path[character.path.length -1]){
         character.path.push(node.id)
     }
     save(character)
-    resumeFunction()
     
     if(node.type === "choice"){
         let allChoices = []
@@ -36,7 +38,7 @@ const storyFunction = async (node, character) => {
             for(let choice of node.event){
                 if(choice.name == answers.choice){
                     console.log(choice.text.blue + "\n")
-                    storyFunction(getNextNode(storyFile, choice.nodeId), character)
+                    storyFunction(getNextNode(storyFile, choice.nodeId), character, choice)
                 }
             }
         })
@@ -53,7 +55,7 @@ const storyFunction = async (node, character) => {
         }).then(async (answers) => {
             console.clear()
             await checkIfConsequence(node, character)
-            storyFunction(getNextNode(storyFile, node.event[0].nodeId), character)
+            storyFunction(getNextNode(storyFile, node.event[0].nodeId), character, node.event[0])
         })
     }
 
@@ -70,7 +72,7 @@ const storyFunction = async (node, character) => {
             const isFightWon = await fight(character, enemy[0])
             if (isFightWon){
                 await checkIfConsequence(node, character)
-                storyFunction(getNextNode(storyFile, node.event[1].nodeId), character)
+                storyFunction(getNextNode(storyFile, node.event[1].nodeId), character, node.event[0])
             }else{
                 await checkIfConsequence(node, character, 1)
             }
@@ -96,7 +98,7 @@ const storyFunction = async (node, character) => {
                 await checkIfConsequence(node, character)
 
                 if(!character.dead)
-                    storyFunction(getNextNode(storyFile, node.event[0].nodeId), character)
+                    storyFunction(getNextNode(storyFile, node.event[0].nodeId), character,node.event[0])
             }else{
                 console.log(`vous faites un score de ${testResult}...`)
                 console.log(`Echec :(`.red)
@@ -106,7 +108,7 @@ const storyFunction = async (node, character) => {
                 await checkIfConsequence(node, character, 1)
 
                 if(!character.dead)
-                    storyFunction(getNextNode(storyFile, node.event[1].nodeId), character)
+                    storyFunction(getNextNode(storyFile, node.event[1].nodeId), character, node.event[0])
             }
         })  
     }
