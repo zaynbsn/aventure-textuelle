@@ -50,14 +50,17 @@ Dive into an adventure in the middle of The island 'The Whispering Holm'
 
 You start in Moonheart town, a small peacefull city, where you can help the inhabitants as an adventurer !
 
-Here the plan of The Whispering Holm
+When you finish the first chapter, a markdown will summarize all your adventure.
+
+### The Whispering Holm
 
 ![alt text](./assets/the_whispering_holm.png?raw=true)
 
 
-only 'Chapter 1 : Moonheart town' is available for now, soon 'Chapter 2 : The forest' will be released
+### Comming soon
 
-When you finish the first chapter, a markdown will summarize all your adventure.
+Only 'Chapter 1 : Moonheart town' is available for now,
+Soon 'Chapter 2 : The forest' will be released
 
 ---
 
