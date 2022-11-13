@@ -5,6 +5,7 @@ import inquirer from 'inquirer'
 import { save } from "./save.js";
 import { resetFunction } from "../reset.js";
 import { fight } from "./fight.js";
+import { resumeFunction } from "./resume.js";
 
 /**
  * 
@@ -12,8 +13,11 @@ import { fight } from "./fight.js";
  * @param {Object} character 
  */
 const storyFunction = async (node, character) => {
-    character.path.push(node.id)
+    if(node.id !== character.path[character.path.length -1]){
+        character.path.push(node.id)
+    }
     save(character)
+    resumeFunction()
     
     if(node.type === "choice"){
         let allChoices = []
