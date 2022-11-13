@@ -49,6 +49,7 @@ const fight = async (character, enemy) => {
     isFightOver = await checkIfOver(character, enemy)
     await waitKeyPress();
   }
+  character.fight.attack = 2
   console.log('combat terminé'.red)
   if (character.hp <= 0) {
     character.hp = 0
