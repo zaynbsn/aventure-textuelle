@@ -278,7 +278,7 @@
         ]
     },
     {
-        "id" : 8,
+        "id" : 9,
         "text":"Sur le chemin vous rencontrez un matelôt qui vous intercèpte brusquement",
         "image":"",
         "type": "text",
@@ -292,7 +292,7 @@
         ]
     },
     {
-        "id" : 8,
+        "id" : 10,
         "text":"Bonjour jeune aventurier. Vous semblez plein de fougue, c'est pourquoi je voudrais vous charger de la quête suivante : un groupe de mercenaire occupe le village et terrifie les habitants, vous devez nous aider à s'en débarasser !",
         "image":"",
         "type": "text",
@@ -307,27 +307,233 @@
     },
     {
         "id" : 11,
-        "text":"",
+        "text":"Voulez vous accepter la quête ?",
         "image":"",
-        "type": "",
+        "type": "choice",
         "event":[
             {
                 "name":"accepter la quête",
-                "text":"",
+                "text":"*Une bonne occasion de gagner un peu d'argent*",
                 "consequence":null,
                 "nodeId": 14
             },
             {
                 "name":"demander des détails sur la quête",
-                "text":"",
+                "text":"*J'aimerais bien en savoir plus...*",
                 "consequence": null,
                 "nodeId": 13
             },
             {
                 "name":"refuser la quête",
-                "text":"",
+                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
                 "consequence": null,
                 "nodeId": 12
+            }
+        ]
+    },
+    {
+        "id" : 12,
+        "text":"Arbre fôret à faire",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":1
+            }
+        ]
+    },
+    {
+        "id" : 13,
+        "text":"Votre interlocuteur reprend : 'Les mercenaires sont des vagabonds et ont souvent été aperçus vers la forêt, pensez a y jeter un coup d'oeil.'",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"*La forêt...*",
+                "consequence":null,
+                "nodeId":15
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "text":"Vous decidez donc d'accepter la quête. que comptez vous faire ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"se renseigner à la taverne",
+                "text":"*une petite binouze ça n'a jamais fais de mal à personne*",
+                "consequence":null,
+                "nodeId": 16
+            },
+            {
+                "name":"sortir du village pour explorer les alentours",
+                "text":"*il y aura peut être des indices...*",
+                "consequence": null,
+                "nodeId": 17
+            }
+        ]
+    },
+    {
+        "id" : 15,
+        "text":"avec ces informations, souhaitez vous accepter la quête ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"accepter la quête",
+                "text":"*Une bonne occasion de gagner un peu d'argent*",
+                "consequence":null,
+                "nodeId":14
+            },
+            {
+                "name":"refuser la quête",
+                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
+                "consequence": null,
+                "nodeId": 12
+            }
+        ]
+    },
+    {
+        "id" : 16,
+        "text":"Arrivé à la taverne, vous observez une peu les lieux, une pièce ronde avec sur votre gauche le bar.  N'oubliez pas que vous êtes ici pour chercher des informations",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":18
+            }
+        ]
+    },
+    {
+        "id" : 17,
+        "text":"Arbre alentours de Moonheart Town à faire",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":1
+            }
+        ]
+    },
+    {
+        "id" : 18,
+        "text":"Vous aperçevez au fond, un homme reclus tout seul à une table dans un coin sombre. Vous allez le voir... ce qui signifie que vous allez devoir passer un test de charisme.",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":19
+            }
+        ]
+    },
+    {
+        "id" : 19,
+        "text":"Epreuve de charisme :",
+        "image":"",
+        "type": "test",
+        "test":{
+            "name":"charism"
+        },
+        "event":[
+            {
+                "name":"Réussi",
+                "text":"Vous réussissez à lui soutirer des informations précises sur la quête !",
+                "consequence":null,
+                "nodeId":21
+            },
+            {
+                "name":"Raté",
+                "text":"Il vous regarde d'un oeil méfiant; et vous donne des détails vagues...",
+                "consequence":null,
+                "nodeId":20
+            }
+        ]
+    },
+    {
+        "id" : 20,
+        "text":"'j'en ai effectivement vu passer tout à l'heure, il me semble qu'ils se dirigeaient vers la forêt  mais j'étais trop bourré pour m'en souvenir exactement'",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":22
+            }
+        ]
+    },
+    {
+        "id" : 21,
+        "text":"'je les ai croisés il y a de ça 10 min, ils sortaient de la taverne, après avoir bu plusieurs pintes chacun, ils étaient 2 et ils criaient sur tous les toits qu'ils se dirigeaient vers la forêt au nord pour rentrer dans leur bivouac'",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"",
+                "consequence":null,
+                "nodeId":22
+            }
+        ]
+    },
+    {
+        "id" : 22,
+        "text":"apres avoir récupéré ses informations, l'homme vous propose une petite bière, qu'en dites vous ?",
+        "image":"",
+        "type": "choice",
+        "event":[
+            {
+                "name":"accepter la bière",
+                "text":"*Une bonne occasion de gagner un peu d'argent*",
+                "consequence":[
+                    {
+                        "libelle":"dexterity",
+                        "isBonus":false,
+                        "value":1
+                    },
+                    {
+                        "libelle":"courage",
+                        "isBonus":true,
+                        "value":1
+                    }
+                ],
+                "nodeId":23
+            },
+            {
+                "name":"refuser la bière et sortir de la taverne",
+                "text":"*Aucune chance, je veux juste partir loin de ce village !*",
+                "consequence": null,
+                "nodeId": 23
+            }
+        ]
+    },
+    {
+        "id" : 23,
+        "text":"Vous sortez de l'auberge et vous dirigez vers la forêt",
+        "image":"",
+        "type": "text",
+        "event":[
+            {
+                "name":"",
+                "text":"Arbre Alentours de Moonheart town à faire",
+                "consequence":null,
+                "nodeId":1
             }
         ]
     },
